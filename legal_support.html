@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal & Support | MoodMate</title>
+    <link rel="stylesheet" href="premium_style.css">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Glass Navigation Sidebar -->
+        <nav class="sidebar">
+            <div class="brand">MoodMate</div>
+            <div class="nav-item active" onclick="showSection('privacy')">Privacy Policy</div>
+            <div class="nav-item" onclick="showSection('terms')">Terms of Use</div>
+            <div class="nav-item" onclick="showSection('support')">Contact Support</div>
+        </nav>
+
+        <!-- Satin Ceramic Content Card -->
+        <main class="content-area">
+
+            <!-- PRIVACY SECTION -->
+            <div id="privacy" class="section active">
+                <h1>Privacy Policy</h1>
+                <p class="legal-text">Last Updated: December 17, 2025</p>
+
+                <p>MoodMate is designed to respect your privacy. We believe that your relationship is personal, and your
+                    data should be too.</p>
+
+                <h2>1. Information Collection</h2>
+                <p>We collect minimal data necessary to facilitate the connection between you and your partner. This
+                    includes your User ID (generated anonymously), your current mood status, and device signals you
+                    choose to share (Battery level, Focus Mode status).</p>
+
+                <h2>2. Data Usage</h2>
+                <p>The information collected is used solely for:</p>
+                <ul>
+                    <li style="margin-left:20px; color:#555; margin-bottom:10px;">Synchronizing your status with your
+                        linked partner.</li>
+                    <li style="margin-left:20px; color:#555; margin-bottom:10px;">Sending push notifications for mood
+                        updates.</li>
+                    <li style="margin-left:20px; color:#555; margin-bottom:10px;">Improving app stability and
+                        performance.</li>
+                </ul>
+                <p>We do not sell, trade, or rent your personal identification information to others.</p>
+
+                <!-- Critical Account Deletion Area -->
+                <div class="deletion-area">
+                    <h3>Data Control</h3>
+                    <p>You have full control over your data. If you wish to delete your account and all associated data
+                        from our servers, you may do so at any time. This action is irreversible.</p>
+                    <button class="btn-delete"
+                        onclick="window.location.href='mailto:privacy@moodmate.app?subject=Account Deletion Request'">Request
+                        Account Deletion</button>
+                </div>
+            </div>
+
+            <!-- TERMS SECTION -->
+            <div id="terms" class="section">
+                <h1>Terms of Use</h1>
+                <p class="legal-text">Effective Date: December 17, 2025</p>
+
+                <h2>1. Acceptance of Terms</h2>
+                <p>By accessing and using MoodMate, you accept and agree to be bound by the terms and provision of this
+                    agreement.</p>
+
+                <h2>2. Use License</h2>
+                <p>Permission is granted to temporarily download one copy of the MoodMate application for personal,
+                    non-commercial transitory viewing only.</p>
+
+                <h2>3. User Conduct</h2>
+                <p>You agree not to use the app to harass, abuse, or harm another person. MoodMate is built for positive
+                    connection between couples.</p>
+
+                <h2>4. Disclaimer</h2>
+                <p>The materials on MoodMate are provided 'as is'. We make no warranties, expressed or implied, and
+                    hereby disclaim and negate all other warranties.</p>
+            </div>
+
+            <!-- SUPPORT SECTION -->
+            <div id="support" class="section">
+                <h1>App Support</h1>
+                <p>We are here to help. Whether you have a question about pairing, found a bug, or just want to say
+                    hello.</p>
+
+                <div class="glass-form">
+                    <form action="mailto:support@moodmate.app" method="post" enctype="text/plain">
+                        <div class="form-group">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-input" placeholder="Your Name">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input type="email" class="form-input" placeholder="name@example.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Message</label>
+                            <textarea class="form-input" placeholder="describe your issue..."></textarea>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+
+                <div style="margin-top: 60px; border-top: 1px solid #eee; padding-top: 40px;">
+                    <h2>Common Questions</h2>
+                    <div style="margin-bottom: 20px;">
+                        <strong style="display:block; margin-bottom:8px;">How do I pair with my partner?</strong>
+                        <p style="font-size:14px; color:#666;">On the Pairing Screen, one person creates a code and the
+                            other enters it. It is that simple.</p>
+                    </div>
+                    <div>
+                        <strong style="display:block; margin-bottom:8px;">Why is battery status not updating?</strong>
+                        <p style="font-size:14px; color:#666;">To save battery, we update the status every 20 minutes
+                            automatically.</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(s => s.classList.remove('active'));
+
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+
+            // Update nav state
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(n => n.classList.remove('active'));
+
+            // Find the clicked nav item (simple way based on index for this demo or event target)
+            // Ideally pass 'this' in onclick, but simple iteration works for distinct items
+            const activeNav = Array.from(navItems).find(n => n.getAttribute('onclick').includes(sectionId));
+            if (activeNav) activeNav.classList.add('active');
+        }
+
+        // Handle URL hash on load (e.g., legal_support.html#support)
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.substring(1);
+            if (hash && ['privacy', 'terms', 'support'].includes(hash)) {
+                showSection(hash);
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,300 @@
+/* Premium MoodMate Styles */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+    --bg-mesh-1: #FBFBFD;
+    --bg-mesh-2: #F5F5F7;
+    --text-primary: #1D1D1F;
+    --text-secondary: #86868B;
+    --text-legal: #424245;
+
+    /* Gradients */
+    --aurora-gradient: linear-gradient(135deg, #FFB894 0%, #FFAA66 50%, #B8A9E5 100%);
+    --bg-lavender-mesh: radial-gradient(at 0% 0%, rgba(255, 184, 148, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(184, 169, 229, 0.1) 0px, transparent 50%);
+
+    /* Surfaces */
+    --ceramic-white: #FFFFFF;
+    --glass-nav: rgba(255, 255, 255, 0.85);
+    --glass-input: rgba(245, 245, 247, 0.5);
+
+    /* Shadows */
+    --shadow-ceramic: 0 12px 40px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+    --shadow-float: 0 20px 60px rgba(0, 0, 0, 0.08);
+    --inner-glow: inset 0 0 20px rgba(255, 255, 255, 0.5);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-mesh-1);
+    background-image: var(--bg-lavender-mesh);
+    background-attachment: fixed;
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Layout */
+.app-container {
+    display: flex;
+    max-width: 1200px;
+    width: 100%;
+    gap: 40px;
+    position: relative;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 280px;
+    position: sticky;
+    top: 40px;
+    height: fit-content;
+    background: var(--glass-nav);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    box-shadow: var(--shadow-ceramic);
+}
+
+.brand {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 30px;
+    padding: 0 15px;
+    letter-spacing: -0.5px;
+    background: var(--aurora-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-item {
+    display: block;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.nav-item:hover {
+    background: rgba(0, 0, 0, 0.03);
+    color: var(--text-primary);
+}
+
+.nav-item.active {
+    background: white;
+    color: #000;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-item.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: var(--aurora-gradient);
+}
+
+/* Main Content Area - Ceramic Card */
+.content-area {
+    flex: 1;
+    background: var(--ceramic-white);
+    border-radius: 32px;
+    padding: 60px;
+    box-shadow: var(--shadow-ceramic);
+    min-height: 80vh;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Sections */
+.section {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    font-size: 34px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    letter-spacing: -1px;
+    color: #000;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 40px 0 16px;
+    color: #000;
+}
+
+p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-legal);
+    margin-bottom: 24px;
+}
+
+.legal-text {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Data Deletion Box */
+.deletion-area {
+    margin-top: 60px;
+    background: #FFF5F5;
+    border: 1px solid rgba(255, 59, 48, 0.1);
+    border-radius: 20px;
+    padding: 30px;
+}
+
+.deletion-area h3 {
+    color: #C93400;
+    /* Darker red for readibility */
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.btn-delete {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background: rgba(255, 59, 48, 0.1);
+    color: #FF3B30;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background: rgba(255, 59, 48, 0.2);
+}
+
+/* Contact Form */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+.form-input {
+    width: 100%;
+    padding: 16px;
+    background: var(--glass-input);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 16px;
+    font-family: inherit;
+    font-size: 16px;
+    transition: all 0.2s;
+}
+
+.form-input:focus {
+    outline: none;
+    background: white;
+    border-color: #0071E3;
+    box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+}
+
+textarea.form-input {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 18px;
+    background: var(--aurora-gradient);
+    border: none;
+    border-radius: 16px;
+    color: white;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    margin-top: 20px;
+}
+
+.btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(255, 170, 102, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 860px) {
+    .app-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: relative;
+        top: 0;
+        display: flex;
+        overflow-x: auto;
+        padding: 15px;
+        align-items: center;
+    }
+
+    .brand {
+        margin-bottom: 0;
+        margin-right: 20px;
+        white-space: nowrap;
+    }
+
+    .nav-item {
+        margin-bottom: 0;
+        margin-right: 10px;
+        white-space: nowrap;
+    }
+
+    .content-area {
+        padding: 30px;
+    }
+}
